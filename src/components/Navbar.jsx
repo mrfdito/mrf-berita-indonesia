@@ -1,7 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { categoryAlias } from "../data/categoryAlias"; // sesuaikan path-nya
 
 const Navbar = () => {
+  // Ambil kategori utama unik dari categoryAlias
+  const mainCategories = Array.from(new Set(Object.values(categoryAlias)));
+
+  // Optional: ubah nama agar tampilan lebih rapi
+  const labelMap = {
+    terbaru: "Terbaru",
+    nasional: "Nasional",
+    internasional: "Internasional",
+    ekonomi: "Ekonomi",
+    olahraga: "Olahraga",
+    tekno: "Teknologi",
+    hiburan: "Hiburan",
+    "gaya-hidup": "Gaya Hidup",
+  };
+
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -10,32 +26,17 @@ const Navbar = () => {
           MRF.<span className="text-black">NEWS</span>
         </Link>
 
-        {/* Menu */}
+        {/* Menu Dinamis */}
         <div className="space-x-4 text-sm font-medium">
-          <Link to="/" className="text-gray-700 hover:text-blue-600">
-            Beranda
-          </Link>
-          <Link to="/terbaru" className="text-gray-700 hover:text-blue-600">
-            Terbaru
-          </Link>
-          <Link to="/hiburan" className="text-gray-700 hover:text-blue-600">
-            Hiburan
-          </Link>
-          <Link to="/gaya-hidup" className="text-gray-700 hover:text-blue-600">
-            Gaya Hidup
-          </Link>
-          <Link to="/olahraga" className="text-gray-700 hover:text-blue-600">
-            Olahraga
-          </Link>
-          <Link to="/nasional" className="text-gray-700 hover:text-blue-600">
-            Nasional
-          </Link>
-          <Link
-            to="/internasional"
-            className="text-gray-700 hover:text-blue-600"
-          >
-            Internasional
-          </Link>
+          {mainCategories.map((cat) => (
+            <Link
+              key={cat}
+              to={`/${cat}`}
+              className="text-gray-700 hover:text-blue-600"
+            >
+              {labelMap[cat] || cat}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
