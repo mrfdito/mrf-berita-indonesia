@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:category" element={<CategoryPage />} />
+        <Route path="/:source/:category" element={<CategoryPage />} />
       </Routes>
     </Router>
   );
