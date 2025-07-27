@@ -172,7 +172,7 @@ const CategoryPage = () => {
         if (json?.data?.posts) {
           setNewsData(json.data.posts);
         } else {
-          setNewsData([]); // Fallback jika struktur data tidak sesuai
+          setNewsData([]);
         }
       } catch (err) {
         console.error("Fetch error:", err);

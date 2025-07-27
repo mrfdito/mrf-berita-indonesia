@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Using icons for arrows
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-// --- Constants ---
 const API_URL = "https://api-berita-indonesia.vercel.app/cnn/terbaru";
-const HEADLINE_COUNT = 5; // How many headlines to fetch
+const HEADLINE_COUNT = 5;
 
-// --- Helper Component: Skeleton Loader ---
 const HeadlineSkeleton = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white shadow-md rounded-lg overflow-hidden animate-pulse">
-    {/* Left Side: Text Skeleton */}
     <div className="p-6 flex flex-col justify-center">
       <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
       <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
@@ -16,12 +13,10 @@ const HeadlineSkeleton = () => (
       <div className="h-3 bg-gray-200 rounded w-1/3 mb-6"></div>
       <div className="h-10 bg-gray-200 rounded w-36"></div>
     </div>
-    {/* Right Side: Image Skeleton */}
     <div className="bg-gray-200 w-full h-full min-h-[250px] md:min-h-0"></div>
   </div>
 );
 
-// --- Main Component ---
 const HeadlineSection = () => {
   const [headlines, setHeadlines] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,7 +31,7 @@ const HeadlineSection = () => {
           throw new Error(`Failed to fetch: ${res.status}`);
         }
         const data = await res.json();
-        // Ensure data structure is as expected before setting state
+
         if (data && data.data && data.data.posts) {
           setHeadlines(data.data.posts.slice(0, HEADLINE_COUNT));
         } else {
@@ -51,7 +46,7 @@ const HeadlineSection = () => {
     };
 
     fetchHeadlines();
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   const handlePrev = () => {
     const newIndex =
@@ -67,7 +62,6 @@ const HeadlineSection = () => {
 
   const currentHeadline = headlines[currentIndex];
 
-  // --- Render Logic ---
   const renderContent = () => {
     if (loading) {
       return <HeadlineSkeleton />;
@@ -94,7 +88,6 @@ const HeadlineSection = () => {
         key={currentIndex}
         className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white shadow-md rounded-lg overflow-hidden transition-opacity duration-500 animate-fadeIn"
       >
-        {/* Left Side: Text Content */}
         <div className="p-6 flex flex-col justify-center order-2 md:order-1">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             {currentHeadline.title}
@@ -138,10 +131,8 @@ const HeadlineSection = () => {
 
       {renderContent()}
 
-      {/* Navigation Controls */}
       {!loading && !error && headlines.length > 0 && (
         <div className="flex justify-center items-center gap-4 mt-8">
-          {/* Previous Button */}
           <button
             onClick={handlePrev}
             className="p-2 rounded-full hover:bg-gray-200 transition-colors"
@@ -150,7 +141,6 @@ const HeadlineSection = () => {
             <FiChevronLeft size={24} className="text-blue-600" />
           </button>
 
-          {/* Pagination Dots */}
           <div className="flex items-center gap-2">
             {headlines.map((_, index) => (
               <button
@@ -166,7 +156,6 @@ const HeadlineSection = () => {
             ))}
           </div>
 
-          {/* Next Button */}
           <button
             onClick={handleNext}
             className="p-2 rounded-full hover:bg-gray-200 transition-colors"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import { FiChevronLeft, FiChevronRight, FiSearch } from "react-icons/fi";
 
-// --- Konfigurasi ---
 const BASE_URL = "https://api-berita-indonesia.vercel.app";
 const CNN_CATEGORIES = [
   "terbaru",
@@ -15,7 +14,6 @@ const CNN_CATEGORIES = [
 ];
 const ITEMS_PER_PAGE = 8;
 
-// --- Fungsi Bantuan ---
 const shuffleArray = (array) => {
   let currentIndex = array.length,
     randomIndex;
@@ -30,7 +28,6 @@ const shuffleArray = (array) => {
   return array;
 };
 
-// --- Komponen Anak: Kartu Berita ---
 const NewsCard = ({ article }) => {
   const formattedDate = new Date(article.pubDate).toLocaleDateString("id-ID", {
     day: "numeric",
@@ -68,7 +65,6 @@ const NewsCard = ({ article }) => {
   );
 };
 
-// --- Komponen Anak: Skeleton Loader ---
 const CardSkeleton = () => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse">
     <div className="h-40 bg-gray-200"></div>
@@ -81,7 +77,6 @@ const CardSkeleton = () => (
   </div>
 );
 
-// --- Komponen Anak: Paginasi ---
 const Pagination = ({
   currentPage,
   totalPages,
@@ -170,7 +165,6 @@ const Pagination = ({
   );
 };
 
-// --- Komponen Utama ---
 const RecommendedNews = () => {
   const [allNews, setAllNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -235,13 +229,11 @@ const RecommendedNews = () => {
         if (isMatch) {
           matches.push(articleWithMatchFlag);
         } else {
-          // Reset flag untuk yang tidak cocok
           nonMatches.push({ ...articleWithMatchFlag, isMatch: false });
         }
       });
       displayList = [...matches, ...nonMatches];
     } else {
-      // Pastikan semua flag isMatch false jika tidak ada pencarian
       displayList = allNews.map((article) => ({ ...article, isMatch: false }));
     }
 
@@ -290,8 +282,6 @@ const RecommendedNews = () => {
               <NewsCard key={item.link} article={item} />
             ))
           ) : (
-            // Pesan ini hanya muncul jika hasil pencarian tidak ditemukan
-            // atau jika fetch awal gagal total dan tidak ada error.
             <div className="col-span-full flex items-center justify-center text-center py-16">
               <p className="text-lg text-gray-500">
                 {searchQuery

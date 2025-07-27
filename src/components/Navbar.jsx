@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 
-// --- Konfigurasi Kategori ---
 const cnnCategories = [
   "terbaru",
   "nasional",
@@ -33,12 +32,11 @@ const Navbar = () => {
   };
 
   const activeLinkStyle = {
-    color: "#2563EB", // Warna biru (blue-600)
+    color: "#2563EB",
     fontWeight: "600",
   };
 
   return (
-    // Navbar dibuat 'sticky' dan diberi z-index tinggi agar tetap di atas
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -49,7 +47,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Menu Kategori untuk Desktop */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {cnnCategories.map((cat) => (
@@ -87,10 +84,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* --- PERUBAHAN UTAMA DI SINI --- */}
-      {/* Menu Dropdown untuk Mobile */}
-      {/* Diberi posisi absolute agar "melayang" dan tidak mendorong konten lain. */}
-      {/* Transisi opacity ditambahkan untuk efek fade-in/out. */}
       <div
         className={`
           md:hidden absolute top-full left-0 w-full bg-white shadow-lg
@@ -104,7 +97,7 @@ const Navbar = () => {
             <NavLink
               key={cat}
               to={`/cnn/${cat}`}
-              onClick={() => setIsMenuOpen(false)} // Tutup menu setelah link diklik
+              onClick={() => setIsMenuOpen(false)}
               style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}
               className="text-gray-600 hover:text-blue-600 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium"
             >

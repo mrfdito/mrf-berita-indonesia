@@ -32,10 +32,8 @@ const HeroCarousel = ({ images = defaultImages, autoPlayInterval = 5000 }) => {
   }, [current, autoPlayInterval, handleNext]);
 
   return (
-    // ----- SECTION DITAMBAHKAN UNTUK MEMBUAT JARAK KIRI-KANAN -----
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
       <div className="w-full h-[250px] md:h-[400px] overflow-hidden relative rounded-xl shadow-lg">
-        {/* Image Container */}
         <div>
           {images.map((img, index) => (
             <img
@@ -53,10 +51,8 @@ const HeroCarousel = ({ images = defaultImages, autoPlayInterval = 5000 }) => {
           ))}
         </div>
 
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
 
-        {/* Navigation Controls */}
         <div className="absolute inset-0 z-20 flex justify-between items-center px-4">
           <button
             onClick={handlePrev}
@@ -74,7 +70,6 @@ const HeroCarousel = ({ images = defaultImages, autoPlayInterval = 5000 }) => {
           </button>
         </div>
 
-        {/* Pagination Dots */}
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
           {images.map((_, index) => (
             <button

@@ -6,7 +6,6 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 
-// (Opsional) Refactor untuk membuat ikon sosial lebih mudah dikelola
 const socialLinks = [
   { href: "#", icon: <FaYoutube /> },
   { href: "#", icon: <FaInstagram /> },
@@ -16,21 +15,13 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-10 px-6">
-      {/* Perubahan pada grid:
-        - grid-cols-1: Default untuk mobile (satu kolom)
-        - md:grid-cols-2: Untuk tablet (dua kolom)
-        - lg:grid-cols-4: Untuk desktop (empat kolom seperti semula)
-      */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Logo dan Sosial Media */}
-        {/* Perubahan: text-center di mobile, kembali ke text-left di desktop */}
         <div className="text-center md:text-left">
           <h1 className="text-xl font-bold mb-2">Berita Kini</h1>
           <p className="text-sm text-gray-400 mb-4">
             © 2025 Berita Kini. All Rights Reserved.
           </p>
           <p className="mb-2">Ikuti Kami</p>
-          {/* Perubahan: justify-center di mobile, kembali normal di desktop */}
           <div className="flex gap-3 justify-center md:justify-start">
             {socialLinks.map((social, index) => (
               <a
@@ -43,8 +34,6 @@ const Footer = () => {
             ))}
           </div>
         </div>
-
-        {/* Telusuri */}
         <div>
           <h2 className="font-semibold mb-3">Telusuri</h2>
           <ul className="space-y-1 text-sm text-gray-300">
@@ -85,8 +74,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Bantuan */}
         <div>
           <h2 className="font-semibold mb-3">Bantuan</h2>
           <ul className="space-y-1 text-sm text-gray-300">
@@ -107,8 +94,6 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-        {/* Newsletter */}
         <div>
           <h2 className="font-semibold mb-3">Berlangganan Berita Terbaru</h2>
           <div className="flex">
